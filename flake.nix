@@ -28,6 +28,8 @@
             xorg.libX11
             xorg.xcbutilwm
             xwayland
+
+            bear # to generate compile_commands.json
           ];
 
           WAYLAND_SCANNER = "wayland-scanner";
