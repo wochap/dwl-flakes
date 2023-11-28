@@ -24,29 +24,34 @@
           };
         });
         wlroots_0_17_main = pkgs-wayland.wlroots;
+        packages = with pkgs; [
+          installShellFiles
+          pkg-config
+          wayland-scanner
+
+          bashInteractive
+
+          libinput
+          xorg.libxcb
+          libxkbcommon
+          pixman
+          wayland
+          wayland-protocols
+
+          xorg.libX11
+          xorg.xcbutilwm
+          xwayland
+
+          bear # to generate compile_commands.json
+        ];
       in {
         devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            installShellFiles
-            pkg-config
-            wayland-scanner
+          packages = packages ++ [ wlroots_0_17 ];
 
-            bashInteractive
-
-            libinput
-            xorg.libxcb
-            libxkbcommon
-            pixman
-            wayland
-            wayland-protocols
-            wlroots_0_17
-
-            xorg.libX11
-            xorg.xcbutilwm
-            xwayland
-
-            bear # to generate compile_commands.json
-          ];
+          WAYLAND_SCANNER = "wayland-scanner";
+        };
+        devShells.wlroots_0_16 = pkgs.mkShell {
+          packages = packages ++ [ wlroots_0_16 ];
 
           WAYLAND_SCANNER = "wayland-scanner";
         };
