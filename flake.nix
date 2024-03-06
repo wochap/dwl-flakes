@@ -1,6 +1,6 @@
 {
   description = "A basic flake with a shell";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs?rev=317484b1ead87b9c1b8ac5261a8d2dd748a0492d"; # nixos-unstable (jan 10 2024)
   inputs.nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
   inputs.nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
   inputs.flake-utils.url = "github:numtide/flake-utils";
@@ -11,18 +11,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
         pkgs-wayland = nixpkgs-wayland.packages.${system};
         wlroots_0_16 = pkgs.wlroots_0_16;
-        wlroots_0_17 = pkgs.wlroots_0_16.overrideAttrs (oldAttrs: {
-          version = "fe53ec693789afb44c899cad8c2df70c8f9f9023";
-          buildInputs = with pkgs;
-            oldAttrs.buildInputs ++ [ hwdata libdisplay-info ];
-          src = pkgs.fetchFromGitLab {
-            domain = "gitlab.freedesktop.org";
-            owner = "wlroots";
-            repo = "wlroots";
-            rev = "fe53ec693789afb44c899cad8c2df70c8f9f9023";
-            sha256 = "sha256-ah8TRZemPDT3NlPAHcW0+kUIZojEGkXZ53I/cNeCcpA=";
-          };
-        });
+        wlroots_0_17 = pkgs.wlroots_0_17;
         wlroots_0_17_main = pkgs-wayland.wlroots;
         packages = with pkgs; [
           installShellFiles
