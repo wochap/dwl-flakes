@@ -26,13 +26,13 @@
 
             # dwl buildInputs
             libinput
-            libxcb
+            xorg.libxcb
             libxkbcommon
             pixman
             wayland
             wayland-protocols
-            libX11
-            xcbutilwm
+            xorg.libX11
+            xorg.xcbutilwm
             xwayland
           ];
 
