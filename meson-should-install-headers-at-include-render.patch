@@ -1,0 +1,31 @@
+From 640e92102b9043fdd840004b85be5aa7e1fddfa9 Mon Sep 17 00:00:00 2001
+From: ozwaldorf <self@ossian.dev>
+Date: Mon, 15 Apr 2024 13:26:35 -0400
+Subject: [PATCH] fix: meson should install headers at include/render
+
+---
+ include/meson.build        | 5 +++++
+ include/render/meson.build | 1 +
+ 2 files changed, 6 insertions(+)
+ create mode 100644 include/render/meson.build
+
+diff --git a/include/meson.build b/include/meson.build
+index 7b80d63..77c9403 100644
+--- a/include/meson.build
++++ b/include/meson.build
+@@ -4,3 +4,8 @@ install_subdir('scenefx',
+ 	install_dir: get_option('includedir'),
+ 	exclude_files: exclude_files,
+ )
++
++install_subdir('render',
++	install_dir: get_option('includedir'),
++	exclude_files: exclude_files
++)
+diff --git a/include/render/meson.build b/include/render/meson.build
+new file mode 100644
+index 0000000..2ee79f7
+--- /dev/null
++++ b/include/render/meson.build
+@@ -0,0 +1 @@
++install_headers()
