@@ -13,7 +13,7 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
         wlroots_0_17 = pkgs.wlroots_0_17;
-        scenefx = scenefx.packages."${system}".scenefx;
+        scenefx-final = scenefx.packages."${system}".scenefx;
       in {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
@@ -43,7 +43,7 @@
           packages = with pkgs; [
             bear # to generate compile_commands.json
 
-            scenefx
+            scenefx-final
             libGL
 
             # nativeBuildInputs
