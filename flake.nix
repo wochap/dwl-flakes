@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url =
-      "github:nixos/nixpkgs?rev=00d80d13810dbfea8ab4ed1009b09100cca86ba8"; # nixos-unstable (jul 04 2024)
+      "github:nixos/nixpkgs?rev=ad0b5eed1b6031efaed382844806550c3dcb4206"; # nixos-unstable (jul 19 2024)
     flake-utils.url = "github:numtide/flake-utils";
     scenefx.url =
       "github:wlrfx/scenefx?rev=2ec3505248e819191c37cb831197629f373326fb";
