@@ -7,7 +7,7 @@
       "github:wlrfx/scenefx?rev=7a7c35750239bd117931698b121a072f30bc1cbe";
     scenefx.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.url =
-      "github:nix-community/nixpkgs-wayland?rev=34d357829660a9f84e4f23ef06e461b9cca89212"; # master (aug 11 2024)
+      "github:nix-community/nixpkgs-wayland?rev=526290c52272f08f7f3b5b36ef67012a60600e5e"; # master (aug 07 2024)
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -17,7 +17,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
         wlroots_0_17 = pkgs.wlroots_0_17;
         wlroots_0_18 = pkgs.wlroots_0_18;
-        wlroots_0_19 = nixpkgs-wayland.packages."${system}".wlroots;
+        wlroots_0_19 = nixpkgs-wayland.packages."${system}".wlroots; # wlroots 14446216
         scenefx-final = scenefx.packages."${system}".scenefx;
       in {
         devShells.default = pkgs.mkShell {
