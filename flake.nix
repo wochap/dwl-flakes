@@ -1,13 +1,13 @@
 {
   inputs = {
     nixpkgs.url =
-      "github:nixos/nixpkgs?rev=9f918d616c5321ad374ae6cb5ea89c9e04bf3e58"; # nixos-unstable (aug 02 2024)
+      "github:nixos/nixpkgs?rev=b681065d0919f7eb5309a93cea2cfa84dec9aa88"; # nixos-24.11 (04 dec 2024)
     flake-utils.url = "github:numtide/flake-utils";
     scenefx.url =
-      "github:wlrfx/scenefx?rev=7a7c35750239bd117931698b121a072f30bc1cbe";
+      "github:wlrfx/scenefx?rev=b2e0ac4beb85aa89d0357dc8fcf8762808650890"; # main (24 dec 2024)
     scenefx.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.url =
-      "github:nix-community/nixpkgs-wayland?rev=52b72b12c456a5c0c87c40941ef79335e8d61104"; # master (sep 03 2024)
+      "github:nix-community/nixpkgs-wayland?rev=52b72b12c456a5c0c87c40941ef79335e8d61104"; # master (03 sep 2024)
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -21,84 +21,90 @@
           nixpkgs-wayland.packages."${system}".wlroots; # wlroots beb9a9ad
         scenefx-final = scenefx.packages."${system}".scenefx;
       in {
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            bear # to generate compile_commands.json
-            # wlroots_0_17
-            wlroots_0_18
+        devShells = {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              bear # to generate compile_commands.json
+              # wlroots_0_17
+              wlroots_0_18
+              # wlroots_0_19
 
-            # dwl nativeBuildInputs
-            installShellFiles
-            pkg-config
-            wayland-scanner
+              # dwl nativeBuildInputs
+              installShellFiles
+              pkg-config
+              wayland-scanner
 
-            # dwl buildInputs
-            libinput
-            xorg.libxcb
-            libxkbcommon
-            pixman
-            wayland
-            wayland-protocols
-            xorg.libX11
-            xorg.xcbutilwm
-            xwayland
-          ];
+              # dwl buildInputs
+              libinput
+              xorg.libxcb
+              libxkbcommon
+              pixman
+              wayland
+              wayland-protocols
+              xorg.libX11
+              xorg.xcbutilwm
+              xwayland
+            ];
 
-          WAYLAND_SCANNER = "wayland-scanner";
-        };
-        devShells.latest = pkgs.mkShell {
-          packages = with pkgs; [
-            bear # to generate compile_commands.json
-            # wlroots_0_17
-            # wlroots_0_18
-            wlroots_0_19
+            WAYLAND_SCANNER = "wayland-scanner";
+          };
 
-            # dwl nativeBuildInputs
-            installShellFiles
-            pkg-config
-            wayland-scanner
+          latest = pkgs.mkShell {
+            packages = with pkgs; [
+              bear # to generate compile_commands.json
+              # wlroots_0_17
+              # wlroots_0_18
+              wlroots_0_19
 
-            # dwl buildInputs
-            libinput
-            xorg.libxcb
-            libxkbcommon
-            pixman
-            wayland
-            wayland-protocols
-            xorg.libX11
-            xorg.xcbutilwm
-            xwayland
-          ];
+              # dwl nativeBuildInputs
+              installShellFiles
+              pkg-config
+              wayland-scanner
 
-          WAYLAND_SCANNER = "wayland-scanner";
-        };
-        devShells.scenefx = pkgs.mkShell {
-          packages = with pkgs; [
-            bear # to generate compile_commands.json
-            # wlroots_0_17
-            wlroots_0_18
+              # dwl buildInputs
+              libinput
+              xorg.libxcb
+              libxkbcommon
+              pixman
+              wayland
+              wayland-protocols
+              xorg.libX11
+              xorg.xcbutilwm
+              xwayland
+            ];
 
-            scenefx-final
-            libGL
+            WAYLAND_SCANNER = "wayland-scanner";
+          };
 
-            # nativeBuildInputs
-            installShellFiles
-            pkg-config
-            wayland-scanner
+          scenefx = pkgs.mkShell {
+            packages = with pkgs; [
+              bear # to generate compile_commands.json
+              # wlroots_0_17
+              wlroots_0_18
+              # wlroots_0_19
 
-            # buildInputs
-            libinput
-            xorg.libxcb
-            libxkbcommon
-            pixman
-            wayland
-            wayland-protocols
-            xorg.libX11
-            xorg.xcbutilwm
-            xwayland
-          ];
+              scenefx-final
+              libGL
 
-          WAYLAND_SCANNER = "wayland-scanner";
+              # nativeBuildInputs
+              installShellFiles
+              pkg-config
+              wayland-scanner
+
+              # buildInputs
+              libinput
+              xorg.libxcb
+              libxkbcommon
+              pixman
+              wayland
+              wayland-protocols
+              xorg.libX11
+              xorg.xcbutilwm
+              xwayland
+            ];
+
+            WAYLAND_SCANNER = "wayland-scanner";
+          };
         };
       });
 }
