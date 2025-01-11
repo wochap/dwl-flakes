@@ -4,7 +4,7 @@
       "github:nixos/nixpkgs?rev=b681065d0919f7eb5309a93cea2cfa84dec9aa88"; # nixos-24.11 (04 dec 2024)
     flake-utils.url = "github:numtide/flake-utils";
     scenefx.url =
-      "github:wlrfx/scenefx?rev=b2e0ac4beb85aa89d0357dc8fcf8762808650890"; # main (24 dec 2024)
+      "github:wlrfx/scenefx?rev=ae7baccb4c962b00d9ef2c3515f8820d17f55ddc"; # main (10 jan 2024)
     scenefx.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.url =
       "github:nix-community/nixpkgs-wayland?rev=52b72b12c456a5c0c87c40941ef79335e8d61104"; # master (03 sep 2024)
